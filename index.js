@@ -27,7 +27,7 @@ app.get("/alltodos",async(req,res)=>{
    res.status(200).json({success :true,message: "All todos",data:alltodos});
 })
 
-//delete data
+//deletedata
 app.delete("/delete/:id",async (req,res)=>{
     let (id) = req.params;
     let deletetodo =await todoModel.findOneAndDelete({_id:id});
