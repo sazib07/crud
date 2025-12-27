@@ -1,10 +1,13 @@
 const express = require ("express");
-const dbConfig = require("./config/db.config");
-const todoModel = require("./model/todo.model");
+// const todoModel = require("./model/todo.model");
 const mongoose = require("mongoose");
+const dbConfig = require("./config/db.config");
 
 const app = express()
 const port =8080;
+require(`dotenv`).config()
+
+console.log(process.env.DB_PASSWORD)
 app.use(express.json())
 
 //databaseconnect
