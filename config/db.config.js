@@ -11,3 +11,6 @@ const dbConfig = ()=>{
 }
 
 module.exports = dbConfig
+
+
+//15m
