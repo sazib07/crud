@@ -2,6 +2,7 @@ const express = require ("express");
 // const todoModel = require("./model/todo.model");
 const mongoose = require("mongoose");
 const dbConfig = require("./config/db.config");
+const itemModel = require("./model/item.model");
 
 const app = express()
 const port =8080;
@@ -15,14 +16,25 @@ dbConfig()
 //dbconnect
 
 //createData
-app.post("/create",async(req,res)=>{
-    let {task} = req.body;
- let createTodo= new todoModel({
-    task:task
- })
- await createTodo.save();
-
- res.send(createTodo)
+app.post("/create",(req,res)=>{
+ try{
+  let {task} = req.body ;
+  if(!task){
+ return res.status(404).json({
+        success:false, 
+       message:"Task is required",
+    });
+  }else{
+   let createTask = new itemModel({
+    
+   })
+  }
+ }catch(error){
+    return res.status(500).json({
+        success:false, 
+        message:error.message ||"internal server error",
+    });
+ }
 })
 
 app.get("/alltodos",async(req,res)=>{
