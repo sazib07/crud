@@ -57,7 +57,21 @@ app.listen(port,()=>{
     console.log(`server is running port number ${port}`)
 })
 
+// //update product
+// app.patch("/update/:id",async(req,res)=>{
+//     try{
+//   let {id} =req.params;
+//   let {productName,quantity,price} =req.body;
+//   let updatProduct = await ProductModel.findOneAndUpdate({
 
+//   }) 
+//     }catch(error){
+//          return res.status(500).json({
+//       success: false,
+//       message: error.message || "Internal server error",
+//     });
+//     }
+// })
 
 
 
