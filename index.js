@@ -19,17 +19,17 @@ dbConfig()
 //createData
 app.post("/create", async (req, res) => {
   try {
-    const { productName, quantity, price } = req.body;
+    const { Name,Email, age} = req.body;
 
     await ProductModel.create({
-      productName,
-      quantity,
-      price,
+      Name,
+      Email,
+      age,
     });
 
     return res.status(201).json({
       success: true,
-      message: "Product created successfully",
+      message: "created successfully",
     });
 
   } catch (error) {
