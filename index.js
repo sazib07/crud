@@ -2,7 +2,8 @@ const express = require ("express");
 // const todoModel = require("./model/todo.model");
 const mongoose = require("mongoose");
 const dbConfig = require("./config/db.config");
-const itemModel = require("./model/item.model");
+// const itemModel = require("./model/item.model");
+const { ProductModel } = require("./config/product");
 
 const app = express()
 const port =8080;
@@ -16,28 +17,31 @@ dbConfig()
 //dbconnect
 
 //createData
-app.post("/create",(req,res)=>{
- try{
-  let {task} = req.body ;
-  if(!task){
- return res.status(404).json({
-        success:false, 
-       message:"Task is required",
-    });
-  }else{
-   let createTask = new itemModel({
-    
-   })
-  }
- }catch(error){
-    return res.status(500).json({
-        success:false, 
-        message:error.message ||"internal server error",
-    });
- }
-})
+app.post("/create", async (req, res) => {
+  try {
+    const { productName, quantity, price } = req.body;
 
-app.get("/alltodos",async(req,res)=>{
+    await ProductModel.create({
+      productName,
+      quantity,
+      price,
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Product created successfully",
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Internal server error",
+    });
+  }
+});
+
+
+app.get("/get-all",async(req,res)=>{
   let alltodos = await todoModel.find({});
    res.status(200).json({success :true,message: "All todos",data:alltodos});
 })
