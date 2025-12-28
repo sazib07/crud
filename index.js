@@ -57,21 +57,20 @@ app.listen(port,()=>{
     console.log(`server is running port number ${port}`)
 })
 
-// //update product
-// app.patch("/update/:id",async(req,res)=>{
-//     try{
-//   let {id} =req.params;
+//update product
+app.patch("/update/:id",async(req,res)=>{
+    try{
+  let {id} =req.params;
 //   let {productName,quantity,price} =req.body;
-//   let updatProduct = await ProductModel.findOneAndUpdate({
-
-//   }) 
-//     }catch(error){
-//          return res.status(500).json({
-//       success: false,
-//       message: error.message || "Internal server error",
-//     });
-//     }
-// })
+  let updatProduct = await ProductModel.findOneAndUpdate({_id:id},req.body,{new:true});
+  return res.status(200).json({success:true,message:"product updated"})
+    }catch(error){
+         return res.status(500).json({
+      success: false,
+      message: error.message || "Internal server error",
+    });
+    }
+})
 
 
 
